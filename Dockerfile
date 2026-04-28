@@ -3,7 +3,7 @@
 #Stage 1 - Build
 
 # A Base Image for preparing an Environment suitable to run the required application ... Here Java 
-FROM eclipse-temurin:17-jdk-alpine AS Builder
+FROM eclipse-temurin:17-jdk-alpine AS builder
 
 #MetaData
 LABEL maintainer="pathakpushkar306@gmail.com"
@@ -23,7 +23,7 @@ RUN javac Main.java
 
 FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
-COPY --from=Builder /app/Main.class .
+COPY --from=builder /app/Main.class .
 
 #Run Java Application
 CMD ["java","Main"]
